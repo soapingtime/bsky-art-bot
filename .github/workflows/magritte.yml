@@ -1,10 +1,10 @@
-name: Post Dali
+name: Post René Magritte
 
 on:
   workflow_dispatch:
   repository_dispatch:
   schedule:
-    - cron: "0 0,4,8,12,16,20 * * *"
+    - cron: "0 2,6,10,14,20,22 * * *"
 jobs:
   post:
     runs-on: ubuntu-latest
@@ -18,9 +18,9 @@ jobs:
         python-version: '3.11'
     - name: set up environment variables
       run: |
-        echo "BSKY_APP_PASSWORD=${{ secrets.DALI_APP_PASSWORD }}" >> $GITHUB_ENV
-        echo "BSKY_HANDLE=${{ secrets.DALI_HANDLE }}" >> $GITHUB_ENV
+        echo "BSKY_APP_PASSWORD=${{ secrets.MAGRITTE_APP_PASSWORD }}" >> $GITHUB_ENV
+        echo "BSKY_HANDLE=${{ secrets.MAGRITTE_HANDLE }}" >> $GITHUB_ENV
     - name: install dependencies
       run: pip install atproto wand requests Pillow
     - name: post to bluesky
-      run: for i in {1..5}; do python dali.py && break || sleep 15; done # retries on fail
+      run: for i in {1..5}; do python magritte.py && break || sleep 15; done # retries on fail
