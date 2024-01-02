@@ -1,0 +1,26 @@
+name: Post Dali
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+  schedule:
+    - cron: "0 1,5,9,13,17,21 * * *"
+jobs:
+  post:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v3
+    - name: set up python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - name: set up environment variables
+      run: |
+        echo "BSKY_APP_PASSWORD=${{ secrets.MC_ESCHER_APP_PASSWORD }}" >> $GITHUB_ENV
+        echo "BSKY_HANDLE=${{ secrets.MC_ESCHER_HANDLE }}" >> $GITHUB_ENV
+    - name: install dependencies
+      run: pip install atproto wand requests Pillow
+    - name: post to bluesky
+      run: for i in {1..5}; do python mc-escher.py && break || sleep 15; done # retries on fail
