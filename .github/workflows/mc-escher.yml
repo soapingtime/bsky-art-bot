@@ -1,4 +1,4 @@
-name: Post Dali
+name: Post M.C. Escher
 
 on:
   workflow_dispatch:
