@@ -35,6 +35,7 @@ def main():
   year = random_painting['completitionYear']
   artist_url = random_painting['artistUrl']
   painting_url = random_painting['url']
+  print(title)
   print(image_url)
   req = urllib.request.Request(
       image_url, 
@@ -50,9 +51,13 @@ def main():
   if len(img_data) > 900 * 1024:
        resized_image = resize_image(image_data)
 
+  link = f'https://wikiart.org/en/{artist_url}/{painting_url}'
+  print(link)
   text_builder = client_utils.TextBuilder()
   text_builder.text(f'{title}, {year}, ')
   text_builder.link(f'https://wikiart.org/en/{artist_url}/{painting_url}', f'https://wikiart.org/en/{artist_url}/{painting_url}'),
+
+  print(link)
 
   client.send_image(
      text=text_builder, image=img_data, image_alt=''

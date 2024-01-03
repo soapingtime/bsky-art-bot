@@ -23,7 +23,7 @@ def main():
   client = Client()
   client.login(os.environ['BSKY_HANDLE'], os.environ['BSKY_APP_PASSWORD'])
 
-  with open('meta/rene-magritte.json', 'r') as file:
+  with open('meta/max-ernst.json', 'r') as file:
     json_data = json.load(file)
 
   # pick a random painting
@@ -52,6 +52,7 @@ def main():
        resized_image = resize_image(image_data)
 
   link = f'https://wikiart.org/en/{artist_url}/{painting_url}'
+  print(link)
   text_builder = client_utils.TextBuilder()
   text_builder.text(f'{title}, {year}, ')
   text_builder.link(f'https://wikiart.org/en/{artist_url}/{painting_url}', f'https://wikiart.org/en/{artist_url}/{painting_url}'),
