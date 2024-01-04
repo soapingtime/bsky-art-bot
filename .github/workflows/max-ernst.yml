@@ -20,7 +20,8 @@ jobs:
       run: |
         echo "BSKY_APP_PASSWORD=${{ secrets.MAX_ERNST_APP_PASSWORD }}" >> $GITHUB_ENV
         echo "BSKY_HANDLE=${{ secrets.MAX_ERNST_HANDLE }}" >> $GITHUB_ENV
+        echo "JSON_PATH=meta/max-ernst.json" >> $GITHUB_ENV
     - name: install dependencies
       run: pip install atproto wand requests Pillow
     - name: post to bluesky
-      run: for i in {1..5}; do python max-ernst.py && break || sleep 15; done # retries on fail
+      run: for i in {1..5}; do python post.py && break || sleep 15; done # retries on fail

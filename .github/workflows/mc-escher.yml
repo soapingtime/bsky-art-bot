@@ -20,7 +20,8 @@ jobs:
       run: |
         echo "BSKY_APP_PASSWORD=${{ secrets.MC_ESCHER_APP_PASSWORD }}" >> $GITHUB_ENV
         echo "BSKY_HANDLE=${{ secrets.MC_ESCHER_HANDLE }}" >> $GITHUB_ENV
+        echo "JSON_PATH=meta/mc-escher.json" >> $GITHUB_ENV
     - name: install dependencies
       run: pip install atproto wand requests Pillow
     - name: post to bluesky
-      run: for i in {1..5}; do python mc-escher.py && break || sleep 15; done # retries on fail
+      run: for i in {1..5}; do python post.py && break || sleep 15; done # retries on fail

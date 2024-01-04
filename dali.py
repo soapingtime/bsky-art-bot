@@ -23,7 +23,7 @@ def main():
   client = Client()
   client.login(os.environ['BSKY_HANDLE'], os.environ['BSKY_APP_PASSWORD'])
 
-  with open('meta/salvador-dali.json', 'r') as file:
+  with open(os.environ['JSON_PATH'], 'r') as file:
     json_data = json.load(file)
 
   # pick a random painting
