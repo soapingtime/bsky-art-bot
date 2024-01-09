@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   repository_dispatch:
   schedule:
-    - cron: "0 2,6,10,14,20,22 * * *"
+    - cron: "30 2,6,10,14,20,22 * * *"
 jobs:
   post:
     runs-on: ubuntu-latest
